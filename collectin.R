@@ -14,12 +14,16 @@ con <- dbConnect(RSQLite::SQLite(), dbname = "afnews.db")
 
 
 # verificarion Creation de la table
-df <- data.frame()
-dbWriteTable(con, "DataCollect", df)
-dbListTables(con)
+# df <- data.frame()
+# dbWriteTable(con, "DataCollect", df)
+# dbListTables(con)
 
-# Collecte
-newdata_tbl <- newdata
+# Collecte source code
+source("C:/Users/aso.RCTS/Desktop/R_/afnewsAPI/utils/utils.R",echo=TRUE)
+
+
+# Defini daily
+newdata_tbl <- bf_news_contents(start_d=Sys.Date(), end_d=Sys.Date(), press='all')
 
 
 # Insertion
