@@ -8,7 +8,6 @@ library(dbplyr)
 
 
 # db creation
-setwd("C:/Users/aso.RCTS/Desktop/R_/afnewsAPI/db")
 con <- dbConnect(RSQLite::SQLite(), dbname = "afnews.db")
 
 
@@ -19,7 +18,7 @@ con <- dbConnect(RSQLite::SQLite(), dbname = "afnews.db")
 # dbListTables(con)
 
 # Collecte source code
-source("C:/Users/aso.RCTS/Desktop/R_/afnewsAPI/utils/utils.R",echo=TRUE)
+source("utils/utils.R",echo=TRUE)
 
 
 # Defini daily
