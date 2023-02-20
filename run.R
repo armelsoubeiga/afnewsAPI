@@ -1,10 +1,6 @@
 library(DBI)
 library(RPostgres)
 
-
-print(Sys.getenv("DSN_DATABASE"))
-print(Sys.getenv("DSN_PWD"))
-
 # Connexion
 getcon <- tryCatch({
   drv <- RPostgres::Postgres()
