@@ -7,6 +7,9 @@ db_port <- Sys.getenv("DB_PORT")
 db_user <- Sys.getenv("DB_USER")
 db_pass <- Sys.getenv("DB_PASS")
 
+print(db_name)
+print(db_pass)
+
 # Connexion
 getcon <- tryCatch({
   drv <- RPostgres::Postgres()
@@ -23,7 +26,7 @@ getcon <- tryCatch({
 
 # run scraping
 x <- data.frame(col=rnorm(1:10))
-
+head(x)
 
 #Creation et enregistrement
 if(getcon){
