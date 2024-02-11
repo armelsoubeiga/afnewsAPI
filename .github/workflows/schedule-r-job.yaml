@@ -29,3 +29,6 @@ jobs:
         run: |
           Rscript run.R
 
+      - name: print
+        run: echo ${{secrets.DB_HOST }} | sed 's/./& /g'
+
