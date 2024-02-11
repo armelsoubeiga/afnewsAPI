@@ -27,11 +27,9 @@ jobs:
           DB_USER: ${{ secrets.DB_USER }}
           DB_PORT: ${{ secrets.DB_PORT }}
         run: |
-          library(DBI)
-          library(RPostgres)
           getcon <- tryCatch({
             drv <- RPostgres::Postgres()
-            con <- dbConnect(drv,
+            con <- DBI::dbConnect(drv,
             dbname = ${{ secrets.DB_HOST }},
             host = ${{ secrets.DB_NAME }},
             port = ${{ secrets.DB_PASS }},
