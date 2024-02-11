@@ -1,11 +1,13 @@
 name: afnews-run-job
+
 on:
   schedule:
     - cron: "*/5 * * * *"
-    
+
 jobs:
   build:
     runs-on: macOS-latest
+    environment: key
     steps:
       - name: checkout repo content
         uses: actions/checkout@v3 # checkout the repository content to github runner
@@ -19,11 +21,11 @@ jobs:
         run: Rscript -e "install.packages(c('remotes','DBI','RPostgres'))"
 
       - name: execute r script
-        env: 
-          DB_HOST: ${{ secrets.DB_HOST }}
-          DB_NAME: ${{ secrets.DB_NAME }}
-          DB_PASS: ${{ secrets.DB_PASS }}
-          DB_USER: ${{ secrets.DB_USER }}
-          DB_PORT: ${{ secrets.DB_PORT }}
-        run: Rscript run.R
+        env:
+          DSN_DATABASE: ${{ secrets.DSN_DATABASE }}
+          DSN_HOSTNAME: ${{ secrets.DSN_HOSTNAME }}
+          DSN_PWD: ${{ secrets.DSN_PWD }}
+          DSN_UID: ${{ secrets.DSN_UID }}
+        run: |
+          Rscript run.R
 
