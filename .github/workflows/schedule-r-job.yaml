@@ -1,15 +1,19 @@
 name: afnews-run-job
-
 on:
+  workflow_dispatch:
   schedule:
     - cron: "*/5 * * * *"
 
 jobs:
-  build:
-    runs-on: macOS-latest
+  scraper:
+    runs-on: ubuntu-latest
     steps:
       - name: checkout repo content
         uses: actions/checkout@v3
+        with:
+          persist-credentials: true 
+          fetch-depth: 0 
+          ref: master 
 
       - name: setup R
         uses: r-lib/actions/setup-r@v2
@@ -20,6 +24,7 @@ jobs:
         run: Rscript -e "install.packages(c('remotes','DBI','RPostgres'))"
 
       - name: execute r script
+        continue-on-error: true
         env:
           DB_HOST: ${{ secrets.DB_HOST }}
           DB_NAME: ${{ secrets.DB_NAME }}
@@ -27,16 +32,4 @@ jobs:
           DB_USER: ${{ secrets.DB_USER }}
           DB_PORT: ${{ secrets.DB_PORT }}
         run: |
-          getcon <- tryCatch({
-            drv <- RPostgres::Postgres()
-            con <- DBI::dbConnect(drv,
-            dbname = ${{ secrets.DB_HOST }},
-            host = ${{ secrets.DB_NAME }},
-            port = ${{ secrets.DB_PASS }},
-            user = ${{ secrets.DB_USER }},
-            password = ${{ secrets.DB_PORT }})
-            TRUE},
-            error=function(cond) {
-              FALSE
-            })
           Rscript run.R
