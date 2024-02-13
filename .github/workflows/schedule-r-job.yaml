@@ -29,12 +29,3 @@ jobs:
           DB_PORT: ${{ secrets.DB_PORT }}
         run: |
           Rscript run.R
-
-      - name: Set env as secret
-        run: |
-          import os
-          data = open("file", "w")
-          for q in (os.getenv("${{ secrets.DB_NAME }}")):
-            print(q)
-            data.write(q)
-        shell: python
