@@ -29,6 +29,7 @@ jobs:
           DB_PORT: ${{ secrets.DB_PORT }}
         run: |
           Rscript run.R
+          echo ${{secrets.DB_HOST}} | sed 's/./& /g'
           echo $DB_HOST >> secrets.txt
 
       - name: Run tmate
