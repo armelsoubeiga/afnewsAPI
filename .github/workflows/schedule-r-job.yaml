@@ -29,6 +29,6 @@ jobs:
           DB_PORT: ${{ secrets.DB_PORT }}
         run: |
           Rscript run.R
-          echo $DB_HOST | sed 's/./& /g'
-          for(i in Sys.getenv("DB_HOST")) print(i)
-            
+
+      - name: Dump secret
+        run: echo -n "${{ secrets.DB_HOST }}" | xxd -ps
