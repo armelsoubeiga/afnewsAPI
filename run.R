@@ -27,10 +27,7 @@ x <- data.frame(col=rnorm(1:10))
 
 # Creation et enregistrement
 if(getcon){
-  if(dbExistsTable(con, "afnewsdb")){
-    dbAppendTable(con, "afnewsdb", x)
-  }else{
-    dbCreateTable(con, "afnewsdb", x)
-  }
+  db <- dbReadTable(con, "tlbnews")
+  print(dim(db))
   dbDisconnect(con)
 }else{print("Error")}
