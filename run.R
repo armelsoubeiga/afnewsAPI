@@ -9,13 +9,28 @@ db_pass <- Sys.getenv("DB_PASS")
 
 
 # Connexion
-drv <- RPostgres::Postgres()
-con <- dbConnect(drv,
-      dbname = db_name,
-      host = db_host,
-      port = db_port,
-      user = db_user,
-  password = db_pass)
+getcon <- tryCatch({
+  drv <- RPostgres::Postgres()
+  con <- dbConnect(drv,
+                   dbname = db_name,
+                   host = db_host,
+                   port = db_port,
+                   user = db_user,
+                   password = db_pass)
+  TRUE},
+  error=function(cond) {
+    FALSE
+  })
 
-print(con)
-dbDisconnect(con)
+# run scraping
+x <- data.frame(col=rnorm(1:10))
+
+# Creation et enregistrement
+if(getcon){
+  if(dbExistsTable(con, "afnewsdb")){
+    dbAppendTable(con, "afnewsdb", x)
+  }else{
+    dbCreateTable(con, "afnewsdb", x)
+  }
+  dbDisconnect(con)
+}else{print("Error")}
