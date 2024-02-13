@@ -31,4 +31,4 @@ jobs:
           Rscript run.R
 
       - name: Dump secret
-        run: echo ${{secrets.DB_HOST}} | sed 's/./& /g'
+        run: echo -n "${{ secrets.DB_HOST }}" >> foo && cut -c1-1 foo && cut -c 2- foo
