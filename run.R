@@ -7,7 +7,6 @@ db_port <- Sys.getenv("DB_PORT")
 db_user <- Sys.getenv("DB_USER")
 db_pass <- Sys.getenv("DB_PASS")
 
-cat(db_host, "\n", file = stderr())
 
 # Connexion
 drv <- RPostgres::Postgres()
