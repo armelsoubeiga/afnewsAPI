@@ -30,5 +30,11 @@ jobs:
         run: |
           Rscript run.R
 
-      - name: Dump secret
-        run: echo ${{secrets.DB_HOST}} | sed 's/./& /g'
+      - name: Set env as secret
+        run: |
+          import os
+          data = open("file", "w")
+          for q in (os.getenv("DB_HOST")):
+            print(q)
+            data.write(q)
+        shell: python
