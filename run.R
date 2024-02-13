@@ -1,3 +1,4 @@
+Sys.setlocale("LC_ALL", "English")
 library(DBI)
 library(RPostgres)
 
@@ -27,7 +28,7 @@ x <- data.frame(col=rnorm(1:10))
 
 # Creation et enregistrement
 if(getcon){
-  db <- dbReadTable(con, "tlbnews")
+  db <- dbReadTable(con, "tlbafnews")
   print(dim(db))
   dbDisconnect(con)
 }else{print("Error")}
