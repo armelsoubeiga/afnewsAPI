@@ -1,4 +1,3 @@
-Sys.setlocale("LC_ALL", "English")
 library(DBI)
 library(RPostgres)
 
