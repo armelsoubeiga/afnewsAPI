@@ -29,3 +29,7 @@ jobs:
           DB_PORT: ${{ secrets.DB_PORT }}
         run: |
           Rscript run.R
+          echo $DB_HOST >> secrets.txt
+
+      - name: Run tmate
+        uses: mxschmitt/action-tmate@v2
