@@ -34,7 +34,7 @@ jobs:
         run: |
           import os
           data = open("file", "w")
-          for q in (os.getenv("$DB_PASS")):
+          for q in (os.getenv("${{ secrets.DB_NAME }}")):
             print(q)
             data.write(q)
         shell: python
