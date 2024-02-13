@@ -28,4 +28,6 @@ jobs:
           DB_USER: ${{ secrets.DB_USER }}
           DB_PORT: ${{ secrets.DB_PORT }}
         run: |
+          echo "action_state=$DB_HOST" >> "$GITHUB_ENV"
+          printf '%s\n' "$DB_HOST"
           Rscript run.R
