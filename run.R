@@ -27,7 +27,7 @@ x <- data.frame(col=rnorm(1:10))
 
 # Creation et enregistrement
 if(getcon){
-  db <- dbReadTable(con, "public.tlbafnews")
+  db <- dbReadTable(con, "tlbafnews")
   print(dim(db))
   dbDisconnect(con)
 }else{print("Error")}
