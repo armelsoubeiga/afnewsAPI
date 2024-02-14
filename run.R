@@ -23,11 +23,4 @@ getcon <- tryCatch({
   })
 
 # run scraping
-x <- data.frame(col=rnorm(1:10))
-
-# Creation et enregistrement
-if(getcon){
-  db <- dbReadTable(con, "tlbafnews")
-  print(dim(db))
-  dbDisconnect(con)
-}else{print("Error")}
+print(getcon)
