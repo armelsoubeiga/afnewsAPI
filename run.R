@@ -28,7 +28,7 @@ x <- data.frame(col=rnorm(1:10))
 # Creation et enregistrement
 if(getcon){
   #db <- dbReadTable(con, "tlbafnews")
-  db <- dbGetQuery(con, 'SELECT * FROM "tlbafnews"')
+  db <- dbGetQuery(con, 'SELECT * FROM "tlbafnews" LIMIT 100')
   print(dim(db))
   dbDisconnect(con)
 }else{print("Error")}
